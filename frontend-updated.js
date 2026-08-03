@@ -1,12 +1,12 @@
-// ╔══════════════════════════════════════════════════════════╗
-// ║  Updated Frontend JavaScript (Use in index.html)         ║
-// ║  Replace the <script> section with this code             ║
-// ╚══════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  UPDATED FRONTEND JAVASCRIPT — Replace <script> section in index.html   ║
+// ║  This integrates with the backend for order management & emails        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 // ── PRODUCTS DATA ──────────────────────────────────────────
 const PRODUCTS = [
   { id:1, name:"VOID JACKET", cat:"OUTERWEAR", price:4999, orig:6999, desc:"Deconstructed utility jacket, acid-wash treatment. Oversized silhouette, asymmetric hem.", badge:"HOT", bn:"hot", sizes:["XS","S","M","L","XL"], em:["🧥","👕","👔"] },
-  { id:2, name:"NEON CROP TEE", cat:"TOPS", price:1299, orig:1999, desc:"UV-reactive crop tee with glitch print. 100% organic cotton. Glows under blacklight.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["👕","👚","🎨"] },
+  { id:2, name:"NEON CROP TEE", cat:"TOPS", price:1299, orig:1999, desc:"UV-reactive crop tee with glitch print. 100% organic cotton. Glows under blacklight.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["👕","👖","🎨"] },
   { id:3, name:"CYBER CARGO", cat:"BOTTOMS", price:3499, orig:4499, desc:"Multi-pocket cargo pants with reflective piping. Adjustable waist, tapered ankle.", badge:"HOT", bn:"hot", sizes:["S","M","L","XL"], em:["👖","👔","⚙️"] },
   { id:4, name:"ACID HOODIE", cat:"TOPS", price:2799, orig:3599, desc:"Heavy 400gsm fleece with distressed acid wash. Kangaroo pocket, ribbed cuffs.", badge:null, bn:"", sizes:["S","M","L","XL"], em:["🧥","👕","🎨"] },
   { id:5, name:"GHOST DRESS", cat:"DRESSES", price:5499, orig:7499, desc:"Sheer layered midi with metallic undertones. Adjustable ruching, deep V-back.", badge:"NEW", bn:"new", sizes:["XS","S","M","L"], em:["👗","✨","🌙"] },
@@ -14,7 +14,7 @@ const PRODUCTS = [
   { id:7, name:"DIGITAL BLAZER", cat:"OUTERWEAR", price:7999, orig:10999, desc:"Structured blazer with pixel-art lining. Single-button closure, padded shoulders.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["🧥","💼","🖥️"] },
   { id:8, name:"GLASS CHAIN BAG", cat:"ACCESSORIES", price:2299, orig:2999, desc:"Mini crossbody with acrylic chain strap. PVC front panel, holographic lining.", badge:null, bn:"", sizes:["ONE SIZE"], em:["👜","💎","✨"] },
   { id:9, name:"GRADIENT LEGGINGS", cat:"BOTTOMS", price:1799, orig:2499, desc:"High-waist compression with dip-dye gradient. 4-way stretch recycled fabric.", badge:"HOT", bn:"hot", sizes:["XS","S","M","L"], em:["👖","🌈","✨"] },
-  { id:10, name:"CHROME BUCKET HAT", cat:"ACCESSORIES", price:999, orig:1499, desc:"Reversible bucket hat in chrome-coated nylon. Adjustable drawstring, unisex fit.", badge:"NEW", bn:"new", sizes:["S/M","M/L"], em:["🎩","⚡","🔮"] }
+  { id:10, name:"CHROME BUCKET HAT", cat:"ACCESSORIES", price:999, orig:1499, desc:"Reversible bucket hat in chrome-coated nylon. Adjustable drawstring, unisex fit.", badge:"NEW", bn:"new", sizes:["S/M","M/L"], em:["🧢","⚡","🔍"] }
 ];
 
 let cart = [], selSizes = {}, imgIdx = {}, currentOrderId = null;
@@ -30,7 +30,7 @@ function render() {
     d.className = 'pc';
     d.innerHTML = `
       <div class="piw">
-        ${p.badge ? `<div class="pbadge ${p.bn==='new'?'new':''}">` + p.badge + `</div>` : ''}
+        ${p.badge ? `<div class="pbadge ${p.bn==='new'?'new':''}">${p.badge}</div>` : ''}
         <div class="pi-track" id="pt${p.id}">
           ${p.em.map(e => `<div class="pi-slide" style="background:linear-gradient(135deg,#111,#1a1a1a)">${e}</div>`).join('')}
         </div>
@@ -44,7 +44,7 @@ function render() {
         <div class="pname">${p.name}</div>
         <div class="pdesc">${p.desc}</div>
         <div class="psizes" id="sz${p.id}">
-          ${p.sizes.map(s=>`<div class="sc ${s===selSizes[p.id]?'sel':''}">` + s + `</div>`).join('')}
+          ${p.sizes.map(s=>`<div class="sc ${s===selSizes[p.id]?'sel':''}"><span onclick="selSz(${p.id},'${s}',this)">${s}</span></div>`).join('')}
         </div>
         <div class="pfoot">
           <div><div class="pprice">₹${p.price.toLocaleString('en-IN')}</div><div class="pori">₹${p.orig.toLocaleString('en-IN')}</div></div>
@@ -64,7 +64,7 @@ function slide(id, i, e) {
 function selSz(id, s, el) {
   selSizes[id] = s;
   document.getElementById('sz'+id).querySelectorAll('.sc').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
+  el.parentElement.classList.add('sel');
 }
 
 // ── CART ─────────────────────────────────────────────────
@@ -127,7 +127,7 @@ function openCheckout() {
 
 function closeCheckout(){ document.getElementById('cmo').classList.remove('open'); }
 
-// ── RAZORPAY ─────────────────────────────────────────────
+// ── RAZORPAY + BACKEND INTEGRATION ────────────────────────
 async function initiateRazorpay() {
   const fn=document.getElementById('fn').value.trim(),
         ln=document.getElementById('ln').value.trim(),
@@ -142,7 +142,7 @@ async function initiateRazorpay() {
 
   const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
 
-  // ✅ CREATE ORDER FIRST (get orderId from backend)
+  // ✅ STEP 1: CREATE ORDER ON BACKEND (get unique orderId)
   showToast('Creating order...');
   try {
     const orderRes = await fetch('/api/orders/create-order', {
@@ -162,25 +162,26 @@ async function initiateRazorpay() {
 
     const orderData = await orderRes.json();
     if (!orderData.orderId) {
-      showToast('Error creating order');
+      showToast('❌ Error creating order');
       return;
     }
 
     currentOrderId = orderData.orderId;
+    showToast('✓ Order created: ' + currentOrderId);
   } catch(e) {
-    showToast('Error creating order');
+    showToast('❌ Order creation failed. Check console.');
     console.error(e);
     return;
   }
 
-  // ✅ PASS orderId to Razorpay
+  // ✅ STEP 2: OPEN RAZORPAY PAYMENT
   const opts = {
-    key: "TKpoqy1SjVKulk",
+    key: "TKpoqy1SjVKulk",  // ← Replace with your actual Razorpay Key ID
     amount: total * 100,
     currency: "INR",
     name: "ZEN-Z COLLECTION",
     description: cart.map(i=>i.name).join(', '),
-    order_id: currentOrderId,
+    order_id: currentOrderId,  // ← Backend-generated Order ID
     handler: function(resp){ closeCheckout(); onPaySuccess(resp, em, fn+' '+ln, currentOrderId); },
     prefill: { name: fn+' '+ln, email: em, contact: ph },
     notes: {
@@ -194,27 +195,31 @@ async function initiateRazorpay() {
 
   try {
     const rzp = new Razorpay(opts);
-    rzp.on('payment.failed', r=>showToast('Payment failed: '+r.error.description));
+    rzp.on('payment.failed', r=>showToast('❌ Payment failed: '+r.error.description));
     rzp.open();
   } catch(e) {
     closeCheckout();
+    showToast('⚠️ Demo mode: Processing payment...');
     onPaySuccess({ razorpay_payment_id:'pay_DEMO'+Date.now() }, em, fn+' '+ln, currentOrderId);
   }
 }
 
 function onPaySuccess(resp, email, name, orderId) {
   const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
+  
+  // ✅ STEP 3: SEND CONFIRMATION EMAIL
   sendEmail({ orderId, name, email, items:[...cart], total, paymentId: resp.razorpay_payment_id||'demo' });
+  
   cart = [];
   updateCart();
-  document.getElementById('soid').textContent = `✦ ORDER: ${orderId} | PAYMENT: ${resp.razorpay_payment_id||'CONFIRMED'}`;
+  document.getElementById('soid').textContent = `🎉 ORDER: ${orderId} | PAYMENT: ${resp.razorpay_payment_id||'CONFIRMED'}`;
   document.getElementById('succ').classList.add('open');
 }
 
-// ── EMAIL AUTOMATION ─────────────────────────────────────
+// ── EMAIL AUTOMATION (calls backend) ────────────────────────
 async function sendEmail(data) {
   try {
-    await fetch('/api/send-order-email', {
+    const res = await fetch('/api/send-order-email', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -226,24 +231,28 @@ async function sendEmail(data) {
         paymentId: data.paymentId
       })
     });
+    const result = await res.json();
+    console.log('✅ Email sent:', result);
   } catch(e) {
-    console.log('📧 Email confirmation sent to:', data.email);
+    console.log('📧 Email backend unavailable (check server). Demo mode: Email would be sent to:', data.email);
   }
 }
 
 function closeSuccess(){ document.getElementById('succ').classList.remove('open'); }
 
-// ── TOAST ─────────────────────────────────────────────────
+// ── TOAST NOTIFICATIONS ────────────────────────────────────
 function showToast(msg) {
-  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  const t=document.getElementById('toast'); 
+  t.textContent=msg; 
+  t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// ── CURSOR ───────────────────────────────────────────────
+// ── CUSTOM CURSOR ──────────────────────────────────────────
 const cur=document.getElementById('cur'), curR=document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function animCur(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animCur)})();
 
-// ── INIT ─────────────────────────────────────────────────
+// ── INITIALIZE ─────────────────────────────────────────────
 render();
