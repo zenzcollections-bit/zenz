@@ -370,7 +370,7 @@ const PRODUCTS = [
   { id:4, name:"ACID HOODIE", cat:"TOPS", price:2799, orig:3599, desc:"Heavy 400gsm fleece with distressed acid wash. Kangaroo pocket, ribbed cuffs.", badge:null, bn:"", sizes:["S","M","L","XL"], em:["🧥","👕","🎨"] },
   { id:5, name:"GHOST DRESS", cat:"DRESSES", price:5499, orig:7499, desc:"Sheer layered midi with metallic undertones. Adjustable ruching, deep V-back.", badge:"NEW", bn:"new", sizes:["XS","S","M","L"], em:["👗","✨","🌙"] },
   { id:6, name:"MOTO BOOTS", cat:"FOOTWEAR", price:6999, orig:9999, desc:"Chunky platform boots, hardware detailing. Vegan leather upper, lug sole.", badge:"LIMITED", bn:"hot", sizes:["36","37","38","39","40"], em:["👢","🔧","⚡"] },
-  { id:7, name:"DIGITAL BLAZER", cat:"OUTERWEAR", price:7999, orig:10999, desc:"Structured blazer with pixel-art lining. Single-button closure, padded shoulders.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["🧥","💼","💻"] },
+  { id:7, name:"DIGITAL BLAZER", cat:"OUTERWEAR", price:7999, orig:10999, desc:"Structured blazer with pixel-art lining. Single-button closure, padded shoulders.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["🧥","💼","🖥️"] },
   { id:8, name:"GLASS CHAIN BAG", cat:"ACCESSORIES", price:2299, orig:2999, desc:"Mini crossbody with acrylic chain strap. PVC front panel, holographic lining.", badge:null, bn:"", sizes:["ONE SIZE"], em:["👜","💎","✨"] },
   { id:9, name:"GRADIENT LEGGINGS", cat:"BOTTOMS", price:1799, orig:2499, desc:"High-waist compression with dip-dye gradient. 4-way stretch recycled fabric.", badge:"HOT", bn:"hot", sizes:["XS","S","M","L"], em:["👖","🌈","✨"] },
   { id:10, name:"CHROME BUCKET HAT", cat:"ACCESSORIES", price:999, orig:1499, desc:"Reversible bucket hat in chrome-coated nylon. Adjustable drawstring, unisex fit.", badge:"NEW", bn:"new", sizes:["S/M","M/L"], em:["🧢","⚡","🔍"] }
@@ -394,7 +394,7 @@ function render() {
           ${p.em.map(e => `<div class="pi-slide" style="background:linear-gradient(135deg,#111,#1a1a1a)">${e}</div>`).join('')}
         </div>
         <div class="pi-nav">
-          ${p.em.map((_,i) => `<div class="pid ${i===0?'active':''}" onclick="slide(${p.id},${i},event)"></div>`).join('')}
+          ${p.em.map((_,i) => `<div class="pid ${i===0?'active':''}"></div>`).join('')}
         </div>
         <div class="pov"><button class="ac-btn" onclick="addCart(${p.id})">ADD TO CART</button></div>
       </div>
@@ -403,7 +403,7 @@ function render() {
         <div class="pname">${p.name}</div>
         <div class="pdesc">${p.desc}</div>
         <div class="psizes" id="sz${p.id}">
-          ${p.sizes.map(s=>`<div class="sc ${s===selSizes[p.id]?'sel':''}" onclick="selSz(${p.id},'${s}',this)">${s}</div>`).join('')}
+          ${p.sizes.map(s=>`<div class="sc ${s===selSizes[p.id]?'sel':''}"><span onclick="selSz(${p.id},'${s}',this)">${s}</span></div>`).join('')}
         </div>
         <div class="pfoot">
           <div><div class="pprice">₹${p.price.toLocaleString('en-IN')}</div><div class="pori">₹${p.orig.toLocaleString('en-IN')}</div></div>
@@ -423,7 +423,7 @@ function slide(id, i, e) {
 function selSz(id, s, el) {
   selSizes[id] = s;
   document.getElementById('sz'+id).querySelectorAll('.sc').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
+  el.parentElement.classList.add('sel');
 }
 
 // ── CART ─────────────────────────────────────────────────
@@ -433,12 +433,15 @@ function addCart(id) {
   if(ex) ex.qty++; else cart.push({...p, size:sz, qty:1});
   updateCart(); showToast(`${p.name} added!`);
 }
+
 function rmCart(id, sz) { cart = cart.filter(x=>!(x.id===id && x.size===sz)); updateCart(); }
+
 function chQty(id, sz, d) {
   const it = cart.find(x=>x.id===id && x.size===sz);
   if(it){ it.qty+=d; if(it.qty<=0) rmCart(id,sz); }
   updateCart();
 }
+
 function updateCart() {
   const tot = cart.reduce((s,x)=>s+x.qty,0);
   const b = document.getElementById('badge');
@@ -463,6 +466,7 @@ function updateCart() {
       </div>
     </div>`).join('');
 }
+
 function openCart(){ document.getElementById('co').classList.add('open'); document.getElementById('cs2').classList.add('open'); }
 function closeCart(){ document.getElementById('co').classList.remove('open'); document.getElementById('cs2').classList.remove('open'); }
 
@@ -479,9 +483,10 @@ function openCheckout() {
     <div class="otot"><span>TOTAL</span><span>₹${total.toLocaleString('en-IN')}</span></div>`;
   document.getElementById('cmo').classList.add('open');
 }
+
 function closeCheckout(){ document.getElementById('cmo').classList.remove('open'); }
 
-// ── RAZORPAY + BACKEND INTEGRATION ──────────────────────────
+// ── RAZORPAY + BACKEND INTEGRATION ────────────────────────
 async function initiateRazorpay() {
   const fn=document.getElementById('fn').value.trim(),
         ln=document.getElementById('ln').value.trim(),
@@ -530,7 +535,7 @@ async function initiateRazorpay() {
 
   // ✅ STEP 2: OPEN RAZORPAY PAYMENT
   const opts = {
-    key: "rzp_test_TLAzeIWDqZa9e8",  // ← Replace with your actual Razorpay Key ID
+    key: "TKpoqy1SjVKulk",  // ← Replace with your actual Razorpay Key ID
     amount: total * 100,
     currency: "INR",
     name: "ZEN-Z COLLECTION",
