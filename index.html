@@ -492,7 +492,7 @@ function initiateRazorpay() {
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ showToast('Invalid email!'); return; }
   const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
   const opts = {
-    key: "TKpoqy1SjVKulk",  // ← Replace with your Razorpay Key ID
+    key: rzp_test_TLAzeIWDqZa9e8,  // ← Replace with your Razorpay Key ID
     amount: total * 100,
     currency: "INR",
     name: "ZEN-Z COLLECTION",
