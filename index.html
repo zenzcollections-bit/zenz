@@ -19,7 +19,7 @@ body{background:var(--ink);color:var(--paper);font-family:var(--font-b);overflow
 .cur-r{position:fixed;width:36px;height:36px;border:1px solid rgba(200,255,0,0.6);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,255,0,.12)}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,255,0,.1)}
 .logo{font-family:var(--font-d);font-size:2rem;letter-spacing:.1em;color:var(--acid);text-shadow:0 0 30px rgba(200,255,0,.4)}
 .logo span{color:var(--ember)}
 .nav-links{display:flex;gap:28px;list-style:none}
@@ -27,12 +27,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .nav-links a:hover{color:var(--acid)}
 .cart-btn{position:relative;background:var(--acid);color:var(--ink);border:none;padding:10px 22px;font-family:var(--font-m);font-size:.7rem;font-weight:700;letter-spacing:.1em;cursor:none;transition:all .2s}
 .cart-btn:hover{background:var(--ember);color:#fff}
-.badge{position:absolute;top:-8px;right:-8px;background:var(--ember);color:#fff;border-radius:50%;width:18px;height:18px;display:none;align-items:center;justify-content:center;font-size:.6rem;font-weight:700}
+.badge{position:absolute;top:-8px;right:-8px;background:var(--ember);color:#fff;border-radius:50%;width:18px;height:18px;display:none;align-items:center;justify-content:center;font-size:.6rem;font-weight:bold}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 40px 60px}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(200,255,0,.07) 0,transparent 60%),radial-gradient(ellipse 50% 50% at 20% 80%,rgba(255,61,0,.09) 0,transparent 50%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,255,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,255,0,.04) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(200,255,0,.07) 0,transparent 60%),radial-gradient(ellipse 50% 50% at 20% 80%,rgba(255,61,0,.09) 0,transparent 60%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,255,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,255,0,.04) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 8s linear infinite}
 @keyframes gridMove{to{transform:translateY(60px)}}
 .hero-content{position:relative;z-index:2;max-width:680px}
 .hero-eye{font-family:var(--font-m);font-size:.65rem;color:var(--acid);letter-spacing:.3em;margin-bottom:18px;animation:fadeUp 1s ease both}
@@ -41,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .hero-title .s{-webkit-text-stroke:2px var(--paper);color:transparent;display:block}
 .hero-sub{font-size:.95rem;color:var(--chrome);margin-top:22px;max-width:400px;line-height:1.7;animation:fadeUp 1s .4s ease both}
 .hero-cta{display:flex;gap:14px;margin-top:36px;animation:fadeUp 1s .6s ease both}
-.btn-p{background:var(--acid);color:var(--ink);border:none;padding:15px 38px;font-family:var(--font-m);font-size:.75rem;font-weight:700;letter-spacing:.1em;cursor:none;transition:all .3s;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.btn-p{background:var(--acid);color:var(--ink);border:none;padding:15px 38px;font-family:var(--font-m);font-size:.75rem;font-weight:700;letter-spacing:.1em;cursor:none;transition:all .3s;clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))}
 .btn-p:hover{background:var(--ember);color:#fff;transform:translateY(-3px)}
 .btn-g{background:transparent;color:var(--paper);border:1px solid rgba(255,255,255,.25);padding:15px 38px;font-family:var(--font-m);font-size:.75rem;letter-spacing:.1em;cursor:none;transition:all .3s}
 .btn-g:hover{border-color:var(--acid);color:var(--acid)}
@@ -51,9 +51,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .hero-3d{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:480px;height:480px;pointer-events:none}
 .orb-wrap{position:relative;width:100%;height:100%;animation:floatAnim 6s ease-in-out infinite}
 @keyframes floatAnim{0%,100%{transform:translateY(0)}50%{transform:translateY(-28px)}}
-.orb-main{position:absolute;width:280px;height:280px;top:50%;left:50%;transform:translate(-50%,-50%);background:conic-gradient(from 0deg,var(--acid),var(--ember),#7b00ff,var(--neon),var(--acid));border-radius:50%;animation:spinOrb 8s linear infinite;box-shadow:0 0 80px rgba(200,255,0,.3),0 0 120px rgba(255,61,0,.15)}
+.orb-main{position:absolute;width:280px;height:280px;top:50%;left:50%;transform:translate(-50%,-50%);background:conic-gradient(from 0deg,var(--acid),var(--ember),#7b00ff,var(--neon),var(--acid));border-radius:50%;animation:spinOrb 8s linear infinite;box-shadow:0 0 60px rgba(200,255,0,.3)}
 @keyframes spinOrb{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.orb-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:190px;height:190px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.4rem;color:var(--acid);letter-spacing:.2em;z-index:2}
+.orb-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:190px;height:190px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.8rem;color:var(--acid);letter-spacing:.1em}
 .orb-sat1{position:absolute;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,231,.7),transparent);top:5%;right:5%;animation:spinSat 10s linear infinite}
 .orb-sat2{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(255,61,0,.8),transparent);bottom:5%;left:5%;animation:spinSat 7s linear infinite reverse}
 @keyframes spinSat{to{transform:rotate(360deg)}}
@@ -107,7 +107,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .cs{width:180px;height:180px;perspective:600px}
 .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;animation:rotateCube 12s linear infinite}
 @keyframes rotateCube{to{transform:rotateX(15deg) rotateY(360deg)}}
-.cf{position:absolute;width:180px;height:180px;background:rgba(200,255,0,.05);border:1px solid rgba(200,255,0,.3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.8rem;color:rgba(200,255,0,.6)}
+.cf{position:absolute;width:180px;height:180px;background:rgba(200,255,0,.05);border:1px solid rgba(200,255,0,.3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:2rem;color:var(--acid)}
 .cf.fr{transform:translateZ(90px)}.cf.bk{transform:rotateY(180deg) translateZ(90px)}.cf.ri{transform:rotateY(90deg) translateZ(90px)}.cf.le{transform:rotateY(-90deg) translateZ(90px)}.cf.tp{transform:rotateX(90deg) translateZ(90px)}.cf.bt{transform:rotateX(-90deg) translateZ(90px)}
 .rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 .ring{position:absolute;border-radius:50%;border:1px solid;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite}
@@ -126,7 +126,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* CART */
 .co{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
 .co.open{opacity:1;pointer-events:all}
-.cs2{position:fixed;right:0;top:0;bottom:0;width:420px;background:#111;border-left:1px solid rgba(200,255,0,.2);z-index:2001;transform:translateX(100%);transition:transform .4s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column}
+.cs2{position:fixed;right:0;top:0;bottom:0;width:420px;background:#111;border-left:1px solid rgba(200,255,0,.2);z-index:2001;transform:translateX(100%);transition:transform .4s cubic-bezier(.23,1,.32,1)}
 .cs2.open{transform:translateX(0)}
 .ch{display:flex;align-items:center;justify-content:space-between;padding:22px;border-bottom:1px solid rgba(255,255,255,.08)}
 .ct{font-family:var(--font-d);font-size:1.7rem;color:var(--acid)}
@@ -156,7 +156,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .mtit{font-family:var(--font-d);font-size:2.4rem;color:var(--acid);margin-bottom:28px}
 .fg{margin-bottom:18px}
 .fl{font-family:var(--font-m);font-size:.62rem;color:var(--chrome);letter-spacing:.2em;display:block;margin-bottom:7px}
-.fi{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.13);color:var(--paper);padding:11px 15px;font-family:var(--font-b);font-size:.88rem;outline:none;transition:border-color .2s}
+.fi{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.13);color:var(--paper);padding:11px 15px;font-family:var(--font-b);font-size:.88rem;outline:none;transition:border .2s}
 .fi:focus{border-color:var(--acid)}
 .fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .mcl{position:absolute;top:18px;right:18px;background:none;border:none;color:var(--chrome);font-size:1.3rem;cursor:none}
@@ -195,10 +195,10 @@ footer{background:#050505;border-top:1px solid rgba(200,255,0,.08);padding:60px 
 .pb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:4px 10px;font-family:var(--font-m);font-size:.58rem;color:var(--chrome)}
 
 /* TOAST */
-.toast{position:fixed;bottom:28px;right:28px;background:var(--acid);color:var(--ink);padding:13px 22px;font-family:var(--font-m);font-size:.72rem;font-weight:700;letter-spacing:.1em;z-index:5000;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.23,1,.32,1)}
+.toast{position:fixed;bottom:28px;right:28px;background:var(--acid);color:var(--ink);padding:13px 22px;font-family:var(--font-m);font-size:.72rem;font-weight:700;letter-spacing:.1em;z-index:5000;transform:translateY(150px);opacity:0;transition:all .3s}
 .toast.show{transform:translateY(0);opacity:1}
 
-@media(max-width:900px){.hero-3d{display:none}.feat-grid{grid-template-columns:1fr}.fg2{grid-template-columns:1fr 1fr}.cs2{width:100%}nav{padding:14px 18px}.nav-links{display:none}#products{padding:0 16px 80px}.pg{grid-template-columns:repeat(2,1fr)}.s-head{padding:60px 18px 30px}}
+@media(max-width:900px){.hero-3d{display:none}.feat-grid{grid-template-columns:1fr}.fg2{grid-template-columns:1fr 1fr}.cs2{width:100%}nav{padding:14px 18px}.nav-links{display:none}#products{padding:0 18px 80px}}
 @media(max-width:540px){.pg{grid-template-columns:1fr}.hero{padding:100px 18px 40px}.mbox{padding:24px}.fr2{grid-template-columns:1fr}}
 </style>
 </head>
@@ -251,8 +251,8 @@ footer{background:#050505;border-top:1px solid rgba(200,255,0,.08);padding:60px 
 <!-- MARQUEE -->
 <div class="mq">
   <div class="mq-track" id="mqt">
-    <span>ZEN-Z COLLECTION</span><span class="dot">◆</span><span>FUTURE FASHION</span><span class="dot">◆</span><span>DROP 01 / 2025</span><span class="dot">◆</span><span>WEAR THE VOID</span><span class="dot">◆</span><span>GEN-Z AESTHETICS</span><span class="dot">◆</span><span>FREE SHIPPING ₹999+</span><span class="dot">◆</span>
-    <span>ZEN-Z COLLECTION</span><span class="dot">◆</span><span>FUTURE FASHION</span><span class="dot">◆</span><span>DROP 01 / 2025</span><span class="dot">◆</span><span>WEAR THE VOID</span><span class="dot">◆</span><span>GEN-Z AESTHETICS</span><span class="dot">◆</span><span>FREE SHIPPING ₹999+</span><span class="dot">◆</span>
+    <span>ZEN-Z COLLECTION</span><span class="dot">◆</span><span>FUTURE FASHION</span><span class="dot">◆</span><span>DROP 01 / 2025</span><span class="dot">◆</span><span>WEAR THE VOID</span><span class="dot">◆</span>
+    <span>ZEN-Z COLLECTION</span><span class="dot">◆</span><span>FUTURE FASHION</span><span class="dot">◆</span><span>DROP 01 / 2025</span><span class="dot">◆</span><span>WEAR THE VOID</span><span class="dot">◆</span>
   </div>
 </div>
 
@@ -364,19 +364,19 @@ footer{background:#050505;border-top:1px solid rgba(200,255,0,.08);padding:60px 
 <script>
 // ── PRODUCTS DATA ──────────────────────────────────────────
 const PRODUCTS = [
-  { id:1, name:"VOID JACKET", cat:"OUTERWEAR", price:4999, orig:6999, desc:"Deconstructed utility jacket, acid-wash treatment. Oversized silhouette, asymmetric hem.", badge:"HOT", bn:"hot", sizes:["XS","S","M","L","XL"], em:["🌑","🌒","🌓"] },
-  { id:2, name:"NEON CROP TEE", cat:"TOPS", price:1299, orig:1999, desc:"UV-reactive crop tee with glitch print. 100% organic cotton. Glows under blacklight.", badge:"NEW", bn:"new", sizes:["XS","S","M","L"], em:["⚡","💥","✨"] },
-  { id:3, name:"CYBER CARGO", cat:"BOTTOMS", price:3499, orig:4499, desc:"Multi-pocket cargo pants with reflective piping. Adjustable waist, tapered ankle.", badge:"HOT", bn:"hot", sizes:["S","M","L","XL","XXL"], em:["🔩","⚙️","🔧"] },
-  { id:4, name:"ACID HOODIE", cat:"TOPS", price:2799, orig:3599, desc:"Heavy 400gsm fleece with distressed acid wash. Kangaroo pocket, ribbed cuffs.", badge:null, bn:"", sizes:["S","M","L","XL"], em:["🌀","💫","🌊"] },
-  { id:5, name:"GHOST DRESS", cat:"DRESSES", price:5499, orig:7499, desc:"Sheer layered midi with metallic undertones. Adjustable ruching, deep V-back.", badge:"NEW", bn:"new", sizes:["XS","S","M","L"], em:["👻","🌫️","⛅"] },
-  { id:6, name:"MOTO BOOTS", cat:"FOOTWEAR", price:6999, orig:9999, desc:"Chunky platform boots, hardware detailing. Vegan leather upper, lug sole.", badge:"LIMITED", bn:"hot", sizes:["36","37","38","39","40","41"], em:["🥾","⛓️","🔗"] },
-  { id:7, name:"DIGITAL BLAZER", cat:"OUTERWEAR", price:7999, orig:10999, desc:"Structured blazer with pixel-art lining. Single-button closure, padded shoulders.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["🟥","🟧","🟨"] },
-  { id:8, name:"GLASS CHAIN BAG", cat:"ACCESSORIES", price:2299, orig:2999, desc:"Mini crossbody with acrylic chain strap. PVC front panel, holographic lining.", badge:null, bn:"", sizes:["ONE SIZE"], em:["💎","✦","◆"] },
-  { id:9, name:"GRADIENT LEGGINGS", cat:"BOTTOMS", price:1799, orig:2499, desc:"High-waist compression with dip-dye gradient. 4-way stretch recycled fabric.", badge:"HOT", bn:"hot", sizes:["XS","S","M","L","XL"], em:["🌅","🌄","🌠"] },
-  { id:10, name:"CHROME BUCKET HAT", cat:"ACCESSORIES", price:999, orig:1499, desc:"Reversible bucket hat in chrome-coated nylon. Adjustable drawstring, unisex fit.", badge:"NEW", bn:"new", sizes:["S/M","L/XL"], em:["🪣","🌐","⊕"] }
+  { id:1, name:"VOID JACKET", cat:"OUTERWEAR", price:4999, orig:6999, desc:"Deconstructed utility jacket, acid-wash treatment. Oversized silhouette, asymmetric hem.", badge:"HOT", bn:"hot", sizes:["XS","S","M","L","XL"], em:["🧥","👕","👔"] },
+  { id:2, name:"NEON CROP TEE", cat:"TOPS", price:1299, orig:1999, desc:"UV-reactive crop tee with glitch print. 100% organic cotton. Glows under blacklight.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["👕","👖","🎨"] },
+  { id:3, name:"CYBER CARGO", cat:"BOTTOMS", price:3499, orig:4499, desc:"Multi-pocket cargo pants with reflective piping. Adjustable waist, tapered ankle.", badge:"HOT", bn:"hot", sizes:["S","M","L","XL"], em:["👖","👔","⚙️"] },
+  { id:4, name:"ACID HOODIE", cat:"TOPS", price:2799, orig:3599, desc:"Heavy 400gsm fleece with distressed acid wash. Kangaroo pocket, ribbed cuffs.", badge:null, bn:"", sizes:["S","M","L","XL"], em:["🧥","👕","🎨"] },
+  { id:5, name:"GHOST DRESS", cat:"DRESSES", price:5499, orig:7499, desc:"Sheer layered midi with metallic undertones. Adjustable ruching, deep V-back.", badge:"NEW", bn:"new", sizes:["XS","S","M","L"], em:["👗","✨","🌙"] },
+  { id:6, name:"MOTO BOOTS", cat:"FOOTWEAR", price:6999, orig:9999, desc:"Chunky platform boots, hardware detailing. Vegan leather upper, lug sole.", badge:"LIMITED", bn:"hot", sizes:["36","37","38","39","40"], em:["👢","🔧","⚡"] },
+  { id:7, name:"DIGITAL BLAZER", cat:"OUTERWEAR", price:7999, orig:10999, desc:"Structured blazer with pixel-art lining. Single-button closure, padded shoulders.", badge:"NEW", bn:"new", sizes:["XS","S","M","L","XL"], em:["🧥","💼","💻"] },
+  { id:8, name:"GLASS CHAIN BAG", cat:"ACCESSORIES", price:2299, orig:2999, desc:"Mini crossbody with acrylic chain strap. PVC front panel, holographic lining.", badge:null, bn:"", sizes:["ONE SIZE"], em:["👜","💎","✨"] },
+  { id:9, name:"GRADIENT LEGGINGS", cat:"BOTTOMS", price:1799, orig:2499, desc:"High-waist compression with dip-dye gradient. 4-way stretch recycled fabric.", badge:"HOT", bn:"hot", sizes:["XS","S","M","L"], em:["👖","🌈","✨"] },
+  { id:10, name:"CHROME BUCKET HAT", cat:"ACCESSORIES", price:999, orig:1499, desc:"Reversible bucket hat in chrome-coated nylon. Adjustable drawstring, unisex fit.", badge:"NEW", bn:"new", sizes:["S/M","M/L"], em:["🧢","⚡","🔍"] }
 ];
 
-let cart = [], selSizes = {}, imgIdx = {};
+let cart = [], selSizes = {}, imgIdx = {}, currentOrderId = null;
 
 // ── RENDER PRODUCTS ───────────────────────────────────────
 function render() {
@@ -481,86 +481,134 @@ function openCheckout() {
 }
 function closeCheckout(){ document.getElementById('cmo').classList.remove('open'); }
 
-// ── RAZORPAY ─────────────────────────────────────────────
-function initiateRazorpay() {
+// ── RAZORPAY + BACKEND INTEGRATION ──────────────────────────
+async function initiateRazorpay() {
   const fn=document.getElementById('fn').value.trim(),
         ln=document.getElementById('ln').value.trim(),
         em=document.getElementById('em').value.trim(),
         ph=document.getElementById('ph').value.trim(),
-        ad=document.getElementById('ad').value.trim();
+        ad=document.getElementById('ad').value.trim(),
+        cy=document.getElementById('cy').value.trim(),
+        pc=document.getElementById('pc').value.trim();
+
   if(!fn||!em||!ph||!ad){ showToast('Please fill all required fields!'); return; }
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ showToast('Invalid email!'); return; }
+
   const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
+
+  // ✅ STEP 1: CREATE ORDER ON BACKEND (get unique orderId)
+  showToast('Creating order...');
+  try {
+    const orderRes = await fetch('/api/orders/create-order', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        items: cart.map(i => ({ name: i.name, size: i.size, qty: i.qty, price: i.price })),
+        total,
+        email: em,
+        name: fn + ' ' + ln,
+        phone: ph,
+        address: ad,
+        city: cy,
+        pincode: pc
+      })
+    });
+
+    const orderData = await orderRes.json();
+    if (!orderData.orderId) {
+      showToast('❌ Error creating order');
+      return;
+    }
+
+    currentOrderId = orderData.orderId;
+    showToast('✓ Order created: ' + currentOrderId);
+  } catch(e) {
+    showToast('❌ Order creation failed. Check console.');
+    console.error(e);
+    return;
+  }
+
+  // ✅ STEP 2: OPEN RAZORPAY PAYMENT
   const opts = {
-    key: rzp_test_TLAzeIWDqZa9e8,  // ← Replace with your Razorpay Key ID
+    key: "rzp_test_TLAzeIWDqZa9e8",  // ← Replace with your actual Razorpay Key ID
     amount: total * 100,
     currency: "INR",
     name: "ZEN-Z COLLECTION",
     description: cart.map(i=>i.name).join(', '),
-    // order_id: "order_XXX",   // ← Add from backend for production
-    handler: function(resp){ closeCheckout(); onPaySuccess(resp, em, fn+' '+ln); },
+    order_id: currentOrderId,  // ← Backend-generated Order ID
+    handler: function(resp){ closeCheckout(); onPaySuccess(resp, em, fn+' '+ln, currentOrderId); },
     prefill: { name: fn+' '+ln, email: em, contact: ph },
     notes: {
-      address: ad+', '+document.getElementById('cy').value+' - '+document.getElementById('pc').value,
+      orderId: currentOrderId,
+      address: ad+', '+cy+' - '+pc,
       items: cart.map(i=>`${i.name}(${i.size})x${i.qty}`).join(' | ')
     },
     theme: { color: "#c8ff00" },
     modal: { ondismiss: ()=>showToast('Payment cancelled.') }
   };
+
   try {
     const rzp = new Razorpay(opts);
-    rzp.on('payment.failed', r=>showToast('Payment failed: '+r.error.description));
+    rzp.on('payment.failed', r=>showToast('❌ Payment failed: '+r.error.description));
     rzp.open();
   } catch(e) {
     closeCheckout();
-    onPaySuccess({ razorpay_payment_id:'pay_DEMO'+Date.now() }, em, fn+' '+ln);
+    showToast('⚠️ Demo mode: Processing payment...');
+    onPaySuccess({ razorpay_payment_id:'pay_DEMO'+Date.now() }, em, fn+' '+ln, currentOrderId);
   }
 }
 
-function onPaySuccess(resp, email, name) {
-  const oid = 'ZNZ'+Date.now(), total = cart.reduce((s,x)=>s+x.price*x.qty,0);
-  sendEmail({ oid, name, email, items:[...cart], total, pid: resp.razorpay_payment_id||'demo' });
-  cart = []; updateCart();
-  document.getElementById('soid').textContent = `ORDER: ${oid} | PAYMENT: ${resp.razorpay_payment_id||'CONFIRMED'}`;
+function onPaySuccess(resp, email, name, orderId) {
+  const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
+  
+  // ✅ STEP 3: SEND CONFIRMATION EMAIL
+  sendEmail({ orderId, name, email, items:[...cart], total, paymentId: resp.razorpay_payment_id||'demo' });
+  
+  cart = [];
+  updateCart();
+  document.getElementById('soid').textContent = `🎉 ORDER: ${orderId} | PAYMENT: ${resp.razorpay_payment_id||'CONFIRMED'}`;
   document.getElementById('succ').classList.add('open');
 }
 
-// ── EMAIL AUTOMATION ─────────────────────────────────────
+// ── EMAIL AUTOMATION (calls backend) ────────────────────────
 async function sendEmail(data) {
-  // POST to backend: /api/send-order-email
-  // Backend uses Nodemailer or SendGrid to send confirmation
   try {
-    await fetch('/api/send-order-email', {
+    const res = await fetch('/api/send-order-email', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        to: data.email,
-        subject: `Order Confirmed #${data.oid} — ZEN-Z Collection`,
-        name: data.name, orderId: data.oid,
-        items: data.items.map(i=>({name:i.name,size:i.size,qty:i.qty,price:i.price})),
-        total: data.total, paymentId: data.pid
+        orderId: data.orderId,
+        name: data.name,
+        email: data.email,
+        items: data.items,
+        total: data.total,
+        paymentId: data.paymentId
       })
     });
+    const result = await res.json();
+    console.log('✅ Email sent:', result);
   } catch(e) {
-    console.log('📧 Email simulation — To:', data.email, '| Order:', data.oid, '| Total: ₹'+data.total);
+    console.log('📧 Email backend unavailable (check server). Demo mode: Email would be sent to:', data.email);
   }
 }
 
 function closeSuccess(){ document.getElementById('succ').classList.remove('open'); }
 
-// ── TOAST ─────────────────────────────────────────────────
+// ── TOAST NOTIFICATIONS ────────────────────────────────────
 function showToast(msg) {
-  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  const t=document.getElementById('toast'); 
+  t.textContent=msg; 
+  t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// ── CURSOR ───────────────────────────────────────────────
+// ── CUSTOM CURSOR ──────────────────────────────────────────
 const cur=document.getElementById('cur'), curR=document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function animCur(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animCur)})();
 
-// ── INIT ─────────────────────────────────────────────────
+// ── INITIALIZE ─────────────────────────────────────────────
 render();
 </script>
 </body>
