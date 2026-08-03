@@ -98,7 +98,7 @@ app.post('/api/orders/create-order', async (req, res) => {
     res.json({
       success: true,
       orderId,
-      amount: total * 100, // Razorpay requires paise
+      amount: total * 100 paise, // Razorpay requires paise
       message: 'Order created successfully'
     });
   } catch (error) {
